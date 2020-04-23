@@ -108,3 +108,8 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
+.idea/
+/pnpm-lock.yaml
+/package-lock.json
+/yarn.lock
