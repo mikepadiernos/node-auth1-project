@@ -7,8 +7,8 @@ const middle = require('../middleware/middleware.js');
 const restricted = middle.restrict;
 
 router
-	.route('/', restricted)
-	.get((req, res) => {
+	.route('/')
+	.get(restricted, (req, res) => {
 		db.findUser()
 			.then(users => {
 				res.json(users);
@@ -43,6 +43,7 @@ router
 		db.findUserBy({ username })
 			.first()
 			.then(user => {
+				console.log('user: ', user.password);
 				user && bc.compareSync(password, user.password)
 					? req.session.user = username && res.status(200).json({ message: `Welcome ${user.username}!`, })
 					: res.status(401).json({ message: 'Credentials invalid' });
@@ -51,5 +52,19 @@ router
 				res.status(500).json({success: false, message: "Problem with login attempt", error});
 			});
 });
+
+router
+	.route('/logout')
+	.get(restricted, (req, res) => {
+		if (req.session) {
+			req.session.destroy(error => {
+				if (error) {
+					res.send('error logging out');
+				} else {
+					res.send('good bye');
+				}
+			});
+		}
+	})
 
 module.exports = router;
