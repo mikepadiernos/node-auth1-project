@@ -9,7 +9,7 @@ const logger = (req, res, next) => {
 const restrict = (req, res, next) => {
 	req.session && req.session.user
 		? next()
-		: res.status(401).json({ success: false, message: 'Unable to log in' })
+		: res.status(401).json({ success: false, message: 'Content restricted. Please log in ot access.' })
 }
 
 module

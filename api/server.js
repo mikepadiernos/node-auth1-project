@@ -18,7 +18,7 @@ const users = require('./routers/users-router.js');
 server
 	.route('/')
 	.get((req, res) => {
-		res.send(`Buckle this! Ludicrous speed, GO!`);
+		res.send(`AH! BUCKLE THIS! Ludicrous speed GO!`);
 	});
 
 server.use(session(sessionConfig));

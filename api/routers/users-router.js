@@ -46,7 +46,7 @@ router
 				console.log('user: ', user.password);
 				user && bc.compareSync(password, user.password)
 					? req.session.user = username && res.status(200).json({ message: `Welcome ${user.username}!`, })
-					: res.status(401).json({ message: 'Credentials invalid' });
+					: res.status(401).json({ message: 'Good. Well, why don\'t we take a five minute break?' });
 			})
 			.catch(error => {
 				res.status(500).json({success: false, message: "Problem with login attempt", error});
@@ -59,9 +59,9 @@ router
 		if (req.session) {
 			req.session.destroy(error => {
 				if (error) {
-					res.send('error logging out');
+					res.send('Problem logging out');
 				} else {
-					res.send('good bye');
+					res.send('Well, I hope it\'s a long ceremony, \'cause it\'s gonna be a short honeymoon.');
 				}
 			});
 		}
