@@ -4,7 +4,7 @@ const cors = require('cors');
 const session = require('express-session');
 
 const middle = require('./middleware/middleware.js');
-const config = require('./session/user-session.js');
+const config = require('./sessions/user-session.js');
 
 const logger = middle.logger;
 const sessionConfig = config.sessionConfig;
